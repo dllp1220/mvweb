@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Add Coffee</title>
+<script src="js/jquery3.6.0.js"></script>
+</head>
+<body>
+	<form>
+		咖啡名稱:<input type="text" name="coffee" value="Extra Espresso" /> <br />
+		售價:<input type="text" name="sale" value="200" /><br /> 總量:<input
+			type="text" name="total" value="10" /><br /> 供應商:<input type="text"
+			name="supplier" value="150" /><br /> 價格:<input type="text"
+			name="price" value="300" /><br /> 
+			<input type="submit" value="Save" />
+			<input type="button" value="coffees" />
+	</form>
+	<div id="mydata"></div>
+    <script>
+        function query(e){
+        	e.preventDefault();
+        	$.get("coffee",display);
+        }
+        function display(data){
+             $("#mydata").html(data);
+        }
+        function send(evt){
+            evt.preventDefault();
+            var frmdata=$("form").serialize();
+            //alert(frmdata);
+            $.post("InsertCoffeeServlet",frmdata,display);
+        }
+        function start(){
+        	$('input[type=submit]').click(send);
+        	$('input[type=button]').click(query);
+        }
+        $(document).ready(start);
+    </script>
+</body>
+</html>
+
+
+
+<!-- <!DOCTYPE html> -->
+<!-- <html> -->
+<!-- <head> -->
+<!-- <meta charset="UTF-8"> -->
+<!-- <title>Add Coffee</title> -->
+<!-- </head> -->
+<!-- <body> -->
+<!-- <script src="js/jquery3.6.0.js"></script> -->
+<!-- 	<faorm id="form1"> -->
+<!-- 	action="InsertCoffeeServlet" method="post"> -->
+<!-- 		咖啡名稱:<input type="text" id="1" name="coffee" value="Extra Espresso" /> -->
+<!-- 		<br /> -->
+<!-- 		售價:<input type="text" id="2" name="sale" value="200" /><br />  -->
+<!-- 		總量:<input type="text" id="3" name="total" value="10" /><br /> -->
+<!-- 		供應商:<input type="text" id="4" name="supplier" value="150" /><br />  -->
+<!-- 		價格:<input type="text" id="5"	name="price" value="300" /><br />  -->
+<!-- 		 <button>Send</button> -->
+<!-- 	</form> -->
+<!-- <div id="display"></div> -->
+<!-- <div id="st"></div> -->
+<!-- 	<script> -->
+<!-- // 	function show(data,status){ -->
+<!-- //         $("#st").text(status); -->
+<!-- //         $("#display").html(data); -->
+<!-- //     } -->
+<!-- // 	function send(e){ -->
+<!-- //         //alert("test"); -->
+<!-- //         e.preventDefault(); -->
+<!-- //         var name=$("#user").val(); -->
+<!-- //         var password=$("#pwd").val(); -->
+<!-- //         var name=$("#user").val(); -->
+<!-- //         var name=$("#user").val(); -->
+<!-- //         var name=$("#user").val(); -->
+<!-- //         //var frm={"user":name,"password":password}; -->
+<!-- //         var frm=$("#form1").serialize(); -->
+<!-- //         alert(frm); -->
+<!-- //         //$.post("UserPasswordServlet",frm,show); -->
+	
+<!-- <!-- 	</script> -->
+
+<!-- </body> -->
+<!-- </html> -->
